@@ -1,0 +1,13 @@
+.room{
+    display: flex;
+    align-items: center;
+    color: #495057;
+    padding: 8px;
+    border-radius: 5px;
+    /* font-weight: 600; */
+
+}
+.room:hover{
+    background-color: #e6ebf5;
+}
+

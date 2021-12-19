@@ -1,0 +1,6 @@
+.chat{
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    color: #495057;
+}

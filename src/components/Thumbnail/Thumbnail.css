@@ -1,0 +1,13 @@
+.thumbnail{
+    color: #7269ef;
+    text-transform: uppercase;
+    background: rgba(114,105,239,.25);
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
