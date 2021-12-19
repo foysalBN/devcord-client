@@ -3,6 +3,7 @@
     background: #f7f7ff;
     box-sizing: border-box;
     padding: 1.5em;
+    padding-bottom: 0;
 }
 
 .rooms .title{
@@ -26,4 +27,15 @@
 }
 .rooms .search-box:focus-visible{
     outline: none;
+}
+
+.rooms .all-rooms{
+    height: calc(100vh - 248px);
+    overflow: hidden scroll;
+}
+
+.rooms .footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

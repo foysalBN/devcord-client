@@ -1,13 +1,19 @@
 import './Room.css'
-import React from 'react';
+import React, { useContext } from 'react';
 import Thumbnail from '../../../Thumbnail/Thumbnail';
+import { chatContext } from '../../Chat';
 
-const Room = () => {
+const Room = ({ room }) => {
+    const { setRoom } = useContext(chatContext)
+
     return (
-        <div className='room'>
-            <Thumbnail />
+        <div
+            className='room'
+            onClick={() => setRoom(room)}
+        >
+            <Thumbnail name={room.name} />
             <div className="name">
-                Javascript
+                {room.name}
             </div>
         </div>
     );

@@ -1,10 +1,10 @@
 import './Thumbnail.css'
 import React from 'react';
 
-const Thumbnail = () => {
+const Thumbnail = ({ name }) => {
     return (
         <div className="thumbnail">
-            J
+            {name ? name[0] : 'J'}
         </div>
     );
 };

@@ -10,10 +10,19 @@
     border-radius: 7px;
     flex-grow: 1;
 }
+.conversation-input input:focus-visible{
+    outline: none;
+}
+
 .conversation-input .icon{
     color: #fff;
     background-color: #7269ef;
     border-radius: 5px;
     padding: 10px;
     margin-left: 7px;
+    cursor: pointer;
+}
+.conversation-input .icon:hover{
+    background-color: #5d52f1;
+
 }

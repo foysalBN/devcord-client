@@ -1,26 +1,92 @@
 import './Chat.css'
-import React from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import useAuth from '../../hook/useAuth';
 import Rooms from './Rooms/Rooms';
 import Conversation from './Conversation/Conversation';
+import io from 'socket.io-client'
+
+let socket;
+const serverEndpoint = 'http://localhost:5000/'
+export const chatContext = createContext()
+
+
+const defaultRoom = {
+    _id: "61bf2f84a26fae24eec0657b",
+    name: "Javascript"
+}
 
 const Chat = () => {
     const { user, logOut } = useAuth()
+    const [room, setRoom] = useState(defaultRoom)
+    const [conversations, setConversations] = useState([])
+
+
+    useEffect(() => {
+        socket = io(serverEndpoint)
+        // if room exist > join to room
+        if (room.name) {
+            socket.emit('join', { user, room })
+        }
+    }, [room])
+
+    // Load previou chat
+    useEffect(() => {
+        fetch(`http://localhost:5000/conversation?roomid=c_${room._id}`)
+            .then(res => res.json())
+            .then(data => {
+                setConversations(data)
+            })
+    }, [room])
+
+    useEffect(() => {
+        // listen new message
+        socket.on('get-new-message', data => {
+            setConversations([...conversations, data])
+        })
+
+    }, [conversations])
+
+
+
+
+    // send message
+    const sendMessage = (newMessage) => {
+        const data = {
+            sender: user.displayName,
+            uid: user.uid,
+            message: newMessage,
+            roomId: room._id,
+        }
+        socket.emit('new-message', data)
+
+    }
+
+
+    const allContext = {
+        test: 'test context',
+        room,
+        setRoom,
+        conversations,
+        sendMessage,
+    }
 
     return (
-        <div className='chat'>
-            <Rooms />
-            <Conversation />
+        <chatContext.Provider value={allContext}>
+            <div className='chat'>
+                <Rooms />
+                <Conversation room={room} />
 
 
-            {/* <h2>Chat</h2>
-            <h2>{user.displayName}</h2>
-            <button
-                onClick={logOut}
-            >SignOut</button> */}
+                <button
+                    onClick={() => {
+                        // setConversations([])
+                        console.log(conversations)
+                    }}
+                >test</button>
 
 
-        </div>
+            </div >
+        </chatContext.Provider>
     );
 };
 

@@ -2,17 +2,16 @@ import './Message.css'
 import React from 'react';
 import Thumbnail from '../../../../Thumbnail/Thumbnail';
 
-const Message = ({ own }) => {
+const Message = ({ sender, message, own }) => {
     return (
         <div className={own ? 'message own' : 'message'}>
             <Thumbnail />
             <div>
                 <div className="message-text">
-                    Hello
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur accusamus minus
+                    {message}
                 </div>
                 <div className="sender">
-                    Name fasdfdas
+                    {sender}
                 </div>
             </div>
 
