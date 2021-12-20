@@ -1,6 +1,7 @@
 import './Message.css'
 import React from 'react';
 import Thumbnail from '../../../../Thumbnail/Thumbnail';
+import ReactEmoji from 'react-emoji'
 
 const Message = ({ sender, message, own }) => {
     return (
@@ -8,7 +9,9 @@ const Message = ({ sender, message, own }) => {
             <Thumbnail />
             <div>
                 <div className="message-text">
-                    {message}
+                    {
+                        ReactEmoji.emojify(message)
+                    }
                 </div>
                 <div className="sender">
                     {sender}
