@@ -83,12 +83,12 @@ const Chat = () => {
                 <Conversation room={room} />
 
 
-                <button
+                {/* <button
                     onClick={() => {
                         // setConversations([])
                         console.log(conversations)
                     }}
-                >test</button>
+                >test</button> */}
 
 
             </div >

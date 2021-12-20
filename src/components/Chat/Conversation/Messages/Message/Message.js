@@ -6,7 +6,7 @@ import ReactEmoji from 'react-emoji'
 const Message = ({ sender, message, own }) => {
     return (
         <div className={own ? 'message own' : 'message'}>
-            <Thumbnail />
+            <Thumbnail name={sender} />
             <div>
                 <div className="message-text">
                     {

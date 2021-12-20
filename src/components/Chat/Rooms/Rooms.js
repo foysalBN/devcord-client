@@ -3,6 +3,9 @@ import React, { useState, useEffect } from 'react';
 import { FiSearch } from 'react-icons/fi'
 import Room from './Room/Room';
 import useAuth from '../../../hook/useAuth';
+import { RiUser2Line } from 'react-icons/ri'
+import { AiOutlineLogin } from 'react-icons/ai'
+
 
 const Rooms = () => {
     const [rooms, setRooms] = useState([])
@@ -27,7 +30,9 @@ const Rooms = () => {
                     placeholder='Search room'
                 />
             </div>
-            <h5>Rooms</h5>
+            <div>
+                <h5>Rooms</h5>
+            </div>
             <div className="all-rooms">
                 {
                     rooms.map(room => (
@@ -36,10 +41,17 @@ const Rooms = () => {
                 }
             </div>
             <div className='footer'>
-                <p>{user.displayName}</p>
+                <p style={{ display: 'flex', alignItems: 'center' }}>
+                    <RiUser2Line />
+                    {user.displayName}
+                </p>
                 <button
+                    className='btn-logout'
                     onClick={logOut}
-                >SignOut</button>
+                >
+                    Sign Out
+                    <AiOutlineLogin />
+                </button>
             </div>
 
         </div>
