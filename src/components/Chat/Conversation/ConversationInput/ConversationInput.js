@@ -2,12 +2,9 @@ import './ConversationInput.css'
 import React, { useContext, useState } from 'react';
 import { RiSendPlane2Fill } from 'react-icons/ri'
 import { chatContext } from '../../Chat';
-import { getAuth } from 'firebase/auth';
 
 const ConversationInput = () => {
-    const [message, setMessage] = useState('')
-    const { user } = getAuth()
-    const { sendMessage } = useContext(chatContext)
+    const { inputRef, sendMessage } = useContext(chatContext)
 
 
     return (
@@ -15,11 +12,17 @@ const ConversationInput = () => {
             <input
                 type="text"
                 placeholder='Enter Message....'
-                onChange={e => setMessage(e.target.value)}
+                ref={inputRef}
+                // Send message on enter press
+                onKeyPress={e => {
+                    if (e.key === 'Enter') {
+                        sendMessage();
+                    }
+                }}
             />
             <RiSendPlane2Fill
                 className='icon'
-                onClick={() => sendMessage(message)}
+                onClick={sendMessage}
             />
         </div>
     );

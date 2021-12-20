@@ -1,5 +1,5 @@
 import './Chat.css'
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext, useEffect, useRef, useState } from 'react';
 import useAuth from '../../hook/useAuth';
 import Rooms from './Rooms/Rooms';
 import Conversation from './Conversation/Conversation';
@@ -19,6 +19,7 @@ const Chat = () => {
     const { user, logOut } = useAuth()
     const [room, setRoom] = useState(defaultRoom)
     const [conversations, setConversations] = useState([])
+    const inputRef = useRef()
 
 
     useEffect(() => {
@@ -51,13 +52,17 @@ const Chat = () => {
 
     // send message
     const sendMessage = (newMessage) => {
+        if (inputRef.current.value == '') return;
+
         const data = {
             sender: user.displayName,
             uid: user.uid,
-            message: newMessage,
+            message: inputRef.current.value,
             roomId: room._id,
         }
         socket.emit('new-message', data)
+        // clearing input
+        inputRef.current.value = ''
 
     }
 
@@ -67,6 +72,7 @@ const Chat = () => {
         room,
         setRoom,
         conversations,
+        inputRef,
         sendMessage,
     }
 
