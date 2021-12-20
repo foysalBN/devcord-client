@@ -19,7 +19,7 @@ const Rooms = () => {
     const newRoomRef = useRef()
 
     useEffect(() => {
-        fetch('http://localhost:5000/rooms')
+        fetch('https://cryptic-lowlands-90159.herokuapp.com/rooms')
             .then(res => res.json())
             .then(data => {
                 setRooms(data)
@@ -37,7 +37,7 @@ const Rooms = () => {
             name: newRoomName,
             creator: user.displayName
         }
-        fetch('http://localhost:5000/rooms', {
+        fetch('https://cryptic-lowlands-90159.herokuapp.com/rooms', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

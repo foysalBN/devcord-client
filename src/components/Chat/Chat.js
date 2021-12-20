@@ -6,7 +6,7 @@ import Conversation from './Conversation/Conversation';
 import io from 'socket.io-client'
 
 let socket;
-const serverEndpoint = 'http://localhost:5000/'
+const serverEndpoint = 'https://cryptic-lowlands-90159.herokuapp.com/'
 export const chatContext = createContext()
 
 
@@ -32,7 +32,7 @@ const Chat = () => {
 
     // Load previou chat
     useEffect(() => {
-        fetch(`http://localhost:5000/conversation?roomid=c_${room._id}`)
+        fetch(`https://cryptic-lowlands-90159.herokuapp.com/conversation?roomid=c_${room._id}`)
             .then(res => res.json())
             .then(data => {
                 setConversations(data)
